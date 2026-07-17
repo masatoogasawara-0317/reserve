@@ -3,62 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shift Schedule</title>
+    <title>STORY - YUU SCHEDULE</title>
     <style>
+        /* 暗い背景とゴールドの装飾で高級感を演出 */
         body {
-            background-color: #121212;
-            color: #d4af37; /* ゴールドの文字色 */
-            font-family: sans-serif;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: #0d0d0d;
+            color: #f2f2f2;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
         }
+
         .container {
             width: 100%;
-            max-width: 400px;
-        }
-        h1 {
+            max-width: 480px; /* スマホ表示に最適な横幅 */
+            padding: 24px 16px;
+            box-sizing: border-box;
             text-align: center;
-            border-bottom: 2px solid #d4af37;
+        }
+
+        /* ヘッダー部分のデザイン */
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #d4af37; /* シャンパンゴールド */
+            margin: 0 0 8px 0;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+        }
+
+        .subtitle {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #8c8c8c;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        /* スケジュールカード */
+        .card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #121212 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 20px 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #d4af37;
+            margin-top: 0;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             padding-bottom: 10px;
         }
-        /* シフト表のスタイル */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        tr {
-            border-bottom: 1px solid #333;
-        }
-        td {
-            padding: 12px;
-        }
-        .date {
+
+        /* お店への予約・連絡ボタン */
+        .btn {
+            display: block;
+            background: linear-gradient(135deg, #c5a028 0%, #a37f1a 100%);
+            color: #000;
+            text-decoration: none;
             font-weight: bold;
+            font-size: 15px;
+            letter-spacing: 1px;
+            padding: 14px;
+            border-radius: 25px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: transform 0.2s, opacity 0.2s;
         }
-        .time {
-            text-align: right;
+
+        .btn:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+
+        .footer {
+            font-size: 11px;
+            color: #555;
+            margin-top: 20px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>SCHEDULE</h1>
+    <div class="header">
+        <h1 class="logo">STORY</h1>
+        <p class="subtitle">Yuu Schedule</p>
+    </div>
 
-    <!-- 自動更新プログラムがこのタグの間を書き換えます -->
-    <!-- SHIFT_START -->
-    <table>
-        <tr>
-            <td class="date">07/17</td>
-            <td class="time">読み込み中...</td>
-        </tr>
-    </table>
-    <!-- SHIFT_END -->
+    <div class="card">
+        <h2 class="card-title">CAST SCHEDULE</h2>
+        
+        <!-- 自動更新プログラムがこのタグの間を認識して、最新のシフト一覧テーブルを書き込みます -->
+        <!-- SHIFT_START -->
+        <p style="color: #8c8c8c; font-size: 14px; padding: 20px 0;">シフトを読み込み中...</p>
+        <!-- SHIFT_END -->
 
+        <!-- お店の予約ページやご自身の予約リンクがある場合はここに設定できます -->
+        <a href="https://www.story-tokyo.com/" target="_blank" class="btn">WEB RESERVATION</a>
+    </div>
+
+    <div class="footer">
+        © STORY TOKYO All Rights Reserved.
+    </div>
 </div>
 
 </body>
