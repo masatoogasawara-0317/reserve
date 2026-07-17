@@ -1,34 +1,30 @@
-name: Auto Parse Shift
+name: Auto Scrape Shift
 on:
-  push:
-    paths:
-      - 'profile.html'
+  schedule:
+    - cron: '0 9 * * *' # 毎日朝9時に自動実行
+  workflow_dispatch:     # 手動でも実行できるようにする
 
 jobs:
-  build:
+  scrape:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
-          
+          node-version: '18'
       - name: Install dependencies
-        run: npm install cheerio
-        
-      - name: Run parser
-        run: node parse.js
-        
+        run: |
+          npm install playwright
+      - name: Run Scraper
+        env:
+          LOGIN_ID: ${{ secrets.LOGIN_ID }}
+          LOGIN_PASS: ${{ secrets.LOGIN_PASS }}
+        run: node scrape.js
       - name: Commit result
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          if [ -n "$(git status --porcelain)" ]; then
-            git add result.json
-            git commit -m "シフト情報を自動更新しました"
-            git push
-          else
-            echo "変更なし"
-          fi
+          git add result.json
+          git commit -m "シフト情報を自動更新" || echo "変更なし"
+          git push
