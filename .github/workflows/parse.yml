@@ -2,7 +2,7 @@ name: Auto Parse Shift
 on:
   push:
     paths:
-      - 'storyindex.html'
+      - 'profile.html'
 
 jobs:
   build:
@@ -25,7 +25,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          # result.jsonが変更されている場合のみコミットする
           if [ -n "$(git status --porcelain)" ]; then
             git add result.json
             git commit -m "シフト情報を自動更新しました"
