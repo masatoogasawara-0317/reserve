@@ -69,7 +69,6 @@
             justify-content: center;
             gap: 8px;
         }
-        /* 自動取得するスケジュール表のスタイル */
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
@@ -95,7 +94,7 @@
             font-weight: 500;
         }
         .time-col.active {
-            color: #D4AF37; /* 出勤日の時間をゴールドで強調 */
+            color: #D4AF37; /* 出勤日をゴールドに */
         }
         /* アクションボタン（メイン動線） */
         .main-btn {
@@ -103,7 +102,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background: linear-gradient(135deg, #1b3322, #0d2113); /* 非常に深い高級感のあるグリーン */
+            background: linear-gradient(135deg, #1b3322, #0d2113); /* 深い高級感のあるグリーン */
             border: 1px solid #2d5437;
             color: #d4eade;
             padding: 16px;
@@ -120,7 +119,7 @@
             opacity: 0.9;
         }
         .main-btn.counseling {
-            background: linear-gradient(135deg, #262626, #1c1c1c); /* シックなチャコールブラック */
+            background: linear-gradient(135deg, #262626, #1c1c1c); /* チャコールブラック */
             border: 1px solid #3d3d3d;
             color: #d4af37;
         }
@@ -149,34 +148,33 @@
             border-color: #D4AF37;
             color: #D4AF37;
         }
-        /* ローディングアニメーション */
-        .loader {
-            text-align: center;
-            color: #888;
-            font-size: 12px;
-            padding: 10px 0;
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- プロフィールヘッダー -->
-        <img src="https://www.story-tokyo.com/prof/prof61/img/main.jpg" alt="Profile Image" class="avatar" id="avatarImg">
-        <h1>事前カウンセリング</h1>
+        <!-- プロフィールヘッダー（絶対Pathで画像を直接指定） -->
+        <img src="https://www.story-tokyo.com/prof/prof61/img/main.jpg" alt="Profile Image" class="avatar">
+        <h1>ゆう👑Story</h1>
         <div class="subtitle">〜 Premium Salon Story 〜</div>
 
-        <!-- スケジュール表示ボックス（HPから自動取得） -->
+        <!-- スケジュール表示ボックス（確実に出るようにコード内埋め込みに修正） -->
         <div class="schedule-box">
             <div class="schedule-header">
                 <i class="fa-regular fa-calendar-days"></i> SCHEDULE
             </div>
-            <div id="scheduleContainer">
-                <div class="loader"><i class="fa-solid fa-spinner fa-spin"></i> スケジュールを同期中...</div>
-            </div>
+            <table class="schedule-table">
+                <tr><td class="day-col">7/17 (金)</td><td class="time-col active">12:00〜21:00</td></tr>
+                <tr><td class="day-col">7/18 (土)</td><td class="time-col active">12:00〜21:00</td></tr>
+                <tr><td class="day-col">7/19 (日)</td><td class="time-col active">12:00〜21:00</td></tr>
+                <tr><td class="day-col">7/20 (月)</td><td class="time-col">お休み</td></tr>
+                <tr><td class="day-col">7/21 (火)</td><td class="time-col active">12:00〜21:00</td></tr>
+                <tr><td class="day-col">7/22 (水)</td><td class="time-col active">12:00〜21:00</td></tr>
+                <tr><td class="day-col">7/23 (木)</td><td class="time-col active">12:00〜21:00</td></tr>
+            </table>
         </div>
 
-        <!-- メイン連携ボタン（設定していただいたLIFF IDが埋め込まれています） -->
+        <!-- メイン連携ボタン -->
         <a href="https://liff.line.me/2010733799-HH18a8xi" class="main-btn">
             <i class="fa-regular fa-calendar-check"></i> ⚜️ オンラインご予約
         </a>
@@ -184,13 +182,13 @@
             <i class="fa-regular fa-file-lines"></i> ⚜️ カウンセリングシート
         </a>
 
-        <!-- SNS・外部リンクリスト -->
+        <!-- SNS・リンクリスト（個人LINEに変更、お店連絡先は削除完了） -->
         <div class="sns-grid">
             <a href="https://www.story-tokyo.com/prof/prof61/" target="_blank" class="sns-item">
                 <i class="fa-solid fa-globe"></i> 公式HP
             </a>
-            <a href="https://line.me/ti/p/WKGoR7lHbY" class="sns-item">
-                <i class="fa-brands fa-line"></i> お店LINE
+            <a href="https://lin.ee/VdDH29H" target="_blank" class="sns-item">
+                <i class="fa-brands fa-line"></i> 個人LINE
             </a>
             <a href="https://x.com/yuu_story0?s=11" target="_blank" class="sns-item">
                 <i class="fa-brands fa-x-twitter"></i> X (Twitter)
@@ -204,12 +202,6 @@
             <a href="https://twitcasting.tv/c:yuu_story" target="_blank" class="sns-item">
                 <i class="fa-solid fa-bullhorn"></i> ツイキャス
             </a>
-            <a href="mailto:story.20241101@gmail.com" class="sns-item">
-                <i class="fa-regular fa-envelope"></i> メール送信
-            </a>
-            <a href="tel:050-1720-1101" class="sns-item">
-                <i class="fa-solid fa-phone"></i> 電話発信
-            </a>
         </div>
     </div>
 
@@ -220,60 +212,6 @@
         }).catch((err) => {
             console.error('LIFFの初期化に失敗しました', err);
         });
-
-        // 【自動同期スクリプト】
-        const targetUrl = "https://www.story-tokyo.com/prof/prof61/";
-        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
-
-        fetch(proxyUrl)
-            .then(response => {
-                if (response.ok) return response.json();
-                throw new Error('Network response was not ok.');
-            })
-            .then(data => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(data.contents, 'text/html');
-                
-                // Story HP上のスケジュールテーブルを検索して引っ張ります
-                const scheduleTable = doc.querySelector('.schedule_table, table'); 
-                
-                if (scheduleTable) {
-                    let customHtml = '<table class="schedule-table">';
-                    const rows = scheduleTable.querySelectorAll('tr');
-                    
-                    rows.forEach(row => {
-                        const cols = row.querySelectorAll('td, th');
-                        if (cols.length >= 2) {
-                            const dayText = cols[0].textContent.trim();
-                            const timeText = cols[1].textContent.trim();
-                            const isActive = (timeText !== "お休み" && timeText !== "休み" && timeText !== "-" && timeText !== "") ? "active" : "";
-                            
-                            customHtml += `<tr>
-                                <td class="day-col">${dayText}</td>
-                                <td class="time-col ${isActive}">${timeText}</td>
-                            </tr>`;
-                        }
-                    });
-                    customHtml += '</table>';
-                    document.getElementById('scheduleContainer').innerHTML = customHtml;
-
-                    // メイン画像もHPから高画質なものを自動で持ってきて同期します
-                    const mainImg = doc.querySelector('.prof_img img, .main_visual img');
-                    if (mainImg && mainImg.src) {
-                        let imgSrc = mainImg.getAttribute('src');
-                        if (!imgSrc.startsWith('http')) {
-                            imgSrc = 'https://www.story-tokyo.com/prof/prof61/' + imgSrc.replace(/^\.\//, '');
-                        }
-                        document.getElementById('avatarImg').src = imgSrc;
-                    }
-                } else {
-                    document.getElementById('scheduleContainer').innerHTML = "<div class='loader'>HPからスケジュールを取得できませんでした。公式HPリンクよりご確認ください。</div>";
-                }
-            })
-            .catch(error => {
-                console.error("エラーが発生しました:", error);
-                document.getElementById('scheduleContainer').innerHTML = "<div class='loader'>スケジュールの同期に失敗しました。</div>";
-            });
     </script>
 </body>
 </html>
