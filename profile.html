@@ -3,125 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STORY - YUU SCHEDULE</title>
+    <title>Story - Premium Profile</title>
+    <!-- LINE LIFF SDK -->
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <!-- FontAwesome (アイコン用) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 暗い背景とゴールドの装飾で高級感を演出 */
+        /* 漆黒とシャンパンゴールドのラグジュアリーデザイン */
         body {
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
-            background-color: #0d0d0d;
-            color: #f2f2f2;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 480px; /* スマホ表示に最適な横幅 */
-            padding: 24px 16px;
-            box-sizing: border-box;
+            background-color: #0d0d0d;
+            color: #e6e6e6;
             text-align: center;
         }
-
-        /* ヘッダー部分のデザイン */
-        .header {
-            margin-bottom: 30px;
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 30px 20px 50px 20px;
+            box-sizing: border-box;
         }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 300;
-            letter-spacing: 4px;
-            color: #d4af37; /* シャンパンゴールド */
-            margin: 0 0 8px 0;
-            text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+        /* プロフィールヘッダー */
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 2px solid #D4AF37;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            margin-bottom: 15px;
         }
-
+        h1 {
+            font-size: 22px;
+            color: #D4AF37;
+            margin: 5px 0;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.2);
+        }
         .subtitle {
             font-size: 12px;
-            letter-spacing: 2px;
             color: #8c8c8c;
-            margin: 0;
-            text-transform: uppercase;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
         }
-
-        /* スケジュールカード */
-        .card {
-            background: linear-gradient(135deg, #1a1a1a 0%, #121212 100%);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+        /* スケジュールエリア */
+        .schedule-box {
+            background: linear-gradient(135deg, #141414, #1a1a1a);
+            border: 1px solid #262626;
             border-radius: 12px;
-            padding: 20px 16px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            padding: 20px 15px;
             margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            text-align: left;
         }
-
-        .card-title {
+        .schedule-header {
+            font-size: 14px;
+            font-weight: bold;
+            color: #D4AF37;
+            margin-bottom: 15px;
+            text-align: center;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .schedule-table tr {
+            border-bottom: 1px solid #222;
+        }
+        .schedule-table tr:last-child {
+            border-bottom: none;
+        }
+        .schedule-table td {
+            padding: 10px 5px;
+        }
+        .day-col {
+            font-weight: bold;
+            color: #999;
+            width: 35%;
+        }
+        .time-col {
+            color: #e6e6e6;
+            text-align: right;
+            font-weight: 500;
+        }
+        .time-col.active {
+            color: #D4AF37;
+        }
+        .loading-text {
+            text-align: center;
+            color: #8c8c8c;
+            font-size: 13px;
+            padding: 10px 0;
+        }
+        /* アクションボタン */
+        .main-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #1b3322, #0d2113);
+            border: 1px solid #2d5437;
+            color: #d4eade;
+            padding: 16px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: bold;
-            color: #d4af37;
-            margin-top: 0;
-            margin-bottom: 16px;
-            letter-spacing: 2px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            padding-bottom: 10px;
-        }
-
-        /* お店への予約・連絡ボタン */
-        .btn {
-            display: block;
-            background: linear-gradient(135deg, #c5a028 0%, #a37f1a 100%);
-            color: #000;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+            box-sizing: border-box;
             letter-spacing: 1px;
-            padding: 14px;
-            border-radius: 25px;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            transition: transform 0.2s, opacity 0.2s;
         }
-
-        .btn:active {
-            transform: scale(0.98);
-            opacity: 0.9;
+        .main-btn:hover { opacity: 0.9; }
+        .main-btn.counseling {
+            background: linear-gradient(135deg, #262626, #1c1c1c);
+            border: 1px solid #3d3d3d;
+            color: #d4af37;
         }
-
-        .footer {
-            font-size: 11px;
-            color: #555;
-            margin-top: 20px;
-            letter-spacing: 1px;
+        /* 外部SNS等のリンク */
+        .sns-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 25px;
+        }
+        .sns-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #141414;
+            border: 1px solid #222;
+            padding: 12px;
+            border-radius: 6px;
+            color: #b3b3b3;
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+        .sns-item:hover {
+            border-color: #D4AF37;
+            color: #D4AF37;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <h1 class="logo">STORY</h1>
-        <p class="subtitle">Yuu Schedule</p>
+    <div class="container">
+        <!-- プロフィールヘッダー -->
+        <img src="profile.jpg" alt="Profile Image" class="avatar">
+        <h1>ゆう👑Story</h1>
+        <div class="subtitle">〜 Premium Salon Story 〜</div>
+
+        <!-- スケジュール表示ボックス（スプレッドシートから自動取得） -->
+        <div class="schedule-box">
+            <div class="schedule-header">
+                <i class="fa-regular fa-calendar-days"></i> SCHEDULE
+            </div>
+            <table class="schedule-table" id="schedule-list">
+                <tr><td class="loading-text" colspan="2">スケジュールを読み込み中...</td></tr>
+            </table>
+        </div>
+
+        <!-- メイン連携ボタン -->
+        <a href="https://liff.line.me/2010733799-HH18a8xi" class="main-btn">
+            <i class="fa-regular fa-calendar-check"></i> ⚜️ オンラインご予約
+        </a>
+        <a href="https://liff.line.me/2010734424-ydvrug0g" class="main-btn counseling">
+            <i class="fa-regular fa-file-lines"></i> ⚜️ カウンセリングシート
+        </a>
+
+        <!-- SNS・リンクリスト -->
+        <div class="sns-grid">
+            <a href="https://www.story-tokyo.com/prof/prof61/" target="_blank" class="sns-item">
+                <i class="fa-solid fa-globe"></i> 公式HP
+            </a>
+            <a href="https://lin.ee/VdDH29H" target="_blank" class="sns-item">
+                <i class="fa-brands fa-line"></i> 個人LINE
+            </a>
+            <a href="https://x.com/yuu_story0?s=11" target="_blank" class="sns-item">
+                <i class="fa-brands fa-x-twitter"></i> X (Twitter)
+            </a>
+            <a href="https://bsky.app/profile/yu-story.bsky.social" target="_blank" class="sns-item">
+                <i class="fa-brands fa-bluesky"></i> Bluesky
+            </a>
+            <a href="https://www.instagram.com/yuu_story03?igsh=MTc2Y2M3bWViYm5wbg%3D%3D&utm_source=qr" target="_blank" class="sns-item">
+                <i class="fa-brands fa-instagram"></i> Instagram
+            </a>
+            <a href="https://twitcasting.tv/c:yuu_story" target="_blank" class="sns-item">
+                <i class="fa-solid fa-bullhorn"></i> ツイキャス
+            </a>
+        </div>
     </div>
 
-    <div class="card">
-        <h2 class="card-title">CAST SCHEDULE</h2>
-        
-        <!-- 自動更新プログラムがこのタグの間を認識して、最新のシフト一覧テーブルを書き込みます -->
-        <!-- SHIFT_START -->
-        <p style="color: #8c8c8c; font-size: 14px; padding: 20px 0;">シフトを読み込み中...</p>
-        <!-- SHIFT_END -->
+    <script>
+        // LIFFの初期化
+        liff.init({ liffId: "2010735540-NyKzUI3c" }).catch((err) => { console.error(err); });
 
-        <!-- お店の予約ページやご自身の予約リンクがある場合はここに設定できます -->
-        <a href="https://www.story-tokyo.com/" target="_blank" class="btn">WEB RESERVATION</a>
-    </div>
+        // ★ここにあなたのGoogleスプレッドシートのIDを貼り付けます★
+        const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE'; 
 
-    <div class="footer">
-        © STORY TOKYO All Rights Reserved.
-    </div>
-</div>
+        // Googleスプレッドシートからデータを自動取得して表示する機能
+        async function fetchSchedule() {
+            const table = document.getElementById('schedule-list');
+            try {
+                const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
+                const response = await fetch(url);
+                const text = await response.text();
+                
+                // Google独自形式のJSONを解析可能なオブジェクトに変換
+                const jsonString = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+                const data = JSON.parse(jsonString);
+                const rows = data.table.rows;
 
+                let htmlContent = '';
+                rows.forEach(row => {
+                    const day = row.c[0] ? row.c[0].v : '';
+                    const time = row.c[1] ? row.c[1].v : '';
+                    
+                    if (day) {
+                        // 「お休み」以外の場合はゴールドにする装飾クラスを付与
+                        const isActive = (time.includes('休み') || time.includes('休館')) ? '' : ' active';
+                        htmlContent += `<tr><td class="day-col">${day}</td><td class="time-col${isActive}">${time}</td></tr>`;
+                    }
+                });
+
+                table.innerHTML = htmlContent || '<tr><td class="loading-text" colspan="2">予定はありません</td></tr>';
+            } catch (error) {
+                console.error('読み込みエラー:', error);
+                table.innerHTML = '<tr><td class="loading-text" colspan="2">スケジュールの自動取得に失敗しました。</td></tr>';
+            }
+        }
+
+        // ページを開いた瞬間に自動実行
+        fetchSchedule();
+    </script>
 </body>
 </html>
