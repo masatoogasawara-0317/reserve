@@ -1,0 +1,20 @@
+name: Daily Scraper
+on:
+  schedule:
+    - cron: '0 */4 * * *'  # 4時間おきに実行（0時, 4時, 8時, 12時, 16時, 20時）
+  workflow_dispatch:     # 手動実行ボタンも追加
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with: {python-version: '3.9'}
+      - name: Install dependencies
+        run: |
+          pip install playwright
+          playwright install chromium
+      - name: Run Script
+        run: python scraper.py
