@@ -1,217 +1,264 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Story - Premium Profile</title>
-    <!-- LINE LIFF SDK -->
-    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-    <!-- FontAwesome (アイコン用) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* 漆黒とシャンパンゴールドのラグジュアリーデザイン */
-        body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #0d0d0d;
-            color: #e6e6e6;
-            text-align: center;
-        }
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 30px 20px 50px 20px;
-            box-sizing: border-box;
-        }
-        /* プロフィールヘッダー */
-        .avatar {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            border: 2px solid #D4AF37;
-            object-fit: cover;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-            margin-bottom: 15px;
-        }
-        h1 {
-            font-size: 22px;
-            color: #D4AF37;
-            margin: 5px 0;
-            letter-spacing: 2px;
-            text-shadow: 0 0 5px rgba(212, 175, 55, 0.2);
-        }
-        .subtitle {
-            font-size: 12px;
-            color: #8c8c8c;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
-        /* スケジュールエリア */
-        .schedule-box {
-            background: linear-gradient(135deg, #141414, #1a1a1a);
-            border: 1px solid #262626;
-            border-radius: 12px;
-            padding: 20px 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            text-align: left;
-        }
-        .schedule-header {
-            font-size: 14px;
-            font-weight: bold;
-            color: #D4AF37;
-            margin-bottom: 15px;
-            text-align: center;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-        }
-        .schedule-table tr {
-            border-bottom: 1px solid #222;
-        }
-        .schedule-table tr:last-child {
-            border-bottom: none;
-        }
-        .schedule-table td {
-            padding: 10px 5px;
-        }
-        .day-col {
-            font-weight: bold;
-            color: #999;
-            width: 35%;
-        }
-        .time-col {
-            color: #e6e6e6;
-            text-align: right;
-            font-weight: 500;
-        }
-        .time-col.active {
-            color: #D4AF37; /* 出勤日をゴールドに */
-        }
-        /* アクションボタン（メイン動線） */
-        .main-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #1b3322, #0d2113); /* 深い高級感のあるグリーン */
-            border: 1px solid #2d5437;
-            color: #d4eade;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            margin-bottom: 15px;
-            transition: all 0.3s;
-            box-sizing: border-box;
-            letter-spacing: 1px;
-        }
-        .main-btn:hover {
-            opacity: 0.9;
-        }
-        .main-btn.counseling {
-            background: linear-gradient(135deg, #262626, #1c1c1c); /* チャコールブラック */
-            border: 1px solid #3d3d3d;
-            color: #d4af37;
-        }
-        /* 外部SNS等へのリンクグリッド */
-        .sns-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 25px;
-        }
-        .sns-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background-color: #141414;
-            border: 1px solid #222;
-            padding: 12px;
-            border-radius: 6px;
-            color: #b3b3b3;
-            text-decoration: none;
-            font-size: 13px;
-            transition: 0.2s;
-        }
-        .sns-item:hover {
-            border-color: #D4AF37;
-            color: #D4AF37;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ゆうStory</title>
+
+<style>
+
+body {
+    margin:0;
+    background:#0b0b0b;
+    color:#fff;
+    font-family:
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    sans-serif;
+}
+
+.container {
+    max-width:480px;
+    margin:auto;
+    padding:35px 20px;
+    text-align:center;
+}
+
+
+/* プロフィール画像 */
+
+.profile-img {
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #c9a227;
+    box-shadow:
+    0 0 25px rgba(201,162,39,.35);
+
+    margin-bottom:20px;
+}
+
+
+
+/* 名前 */
+
+.name {
+
+    font-size:30px;
+    letter-spacing:5px;
+    font-weight:300;
+
+    color:#d4af37;
+
+    margin:0;
+
+}
+
+
+.subtitle {
+
+    font-size:13px;
+
+    color:#999;
+
+    letter-spacing:3px;
+
+    margin-top:10px;
+
+}
+
+
+
+/* スケジュール */
+
+.schedule {
+
+    margin-top:40px;
+
+}
+
+
+
+.title {
+
+    color:#d4af37;
+
+    letter-spacing:3px;
+
+    font-size:16px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.schedule p {
+
+    font-size:15px;
+
+    line-height:2;
+
+    color:#ddd;
+
+}
+
+
+
+/* ボタン */
+
+.btn {
+
+    display:block;
+
+    margin:15px 0;
+
+    padding:15px;
+
+    border-radius:30px;
+
+    text-decoration:none;
+
+    color:#000;
+
+    font-weight:bold;
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #d4af37,
+
+    #a67c00
+
+    );
+
+
+
+    box-shadow:
+
+    0 5px 20px rgba(212,175,55,.25);
+
+}
+
+
+
+.btn.sub {
+
+    background:#151515;
+
+    color:#d4af37;
+
+    border:1px solid #d4af37;
+
+}
+
+
+
+.footer {
+
+    margin-top:40px;
+
+    font-size:11px;
+
+    color:#555;
+
+}
+
+
+</style>
+
 </head>
+
+
 <body>
 
-    <div class="container">
-        <!-- プロフィールヘッダー（同じフォルダのprofile.jpgを直接読み込む設定に変更） -->
-        <img src="profile.jpg" alt="Profile Image" class="avatar">
-        <h1>ゆう👑Story</h1>
-        <div class="subtitle">〜 Premium Salon Story 〜</div>
 
-        <!-- スケジュール表示ボックス -->
-        <div class="schedule-box">
-            <div class="schedule-header">
-                <i class="fa-regular fa-calendar-days"></i> SCHEDULE
-            </div>
-            <table class="schedule-table">
-                <tr><td class="day-col">7/17 (金)</td><td class="time-col active">12:00〜21:00</td></tr>
-                <tr><td class="day-col">7/18 (土)</td><td class="time-col active">12:00〜21:00</td></tr>
-                <tr><td class="day-col">7/19 (日)</td><td class="time-col active">12:00〜21:00</td></tr>
-                <tr><td class="day-col">7/20 (月)</td><td class="time-col">お休み</td></tr>
-                <tr><td class="day-col">7/21 (火)</td><td class="time-col active">12:00〜21:00</td></tr>
-                <tr><td class="day-col">7/22 (水)</td><td class="time-col active">12:00〜21:00</td></tr>
-                <tr><td class="day-col">7/23 (木)</td><td class="time-col active">12:00〜21:00</td></tr>
-            </table>
-        </div>
+<div class="container">
 
-        <!-- メイン連携ボタン -->
-        <a href="https://liff.line.me/2010733799-HH18a8xi" class="main-btn">
-            <i class="fa-regular fa-calendar-check"></i> ⚜️ オンラインご予約
-        </a>
-        <a href="https://liff.line.me/2010734424-ydvrug0g" class="main-btn counseling">
-            <i class="fa-regular fa-file-lines"></i> ⚜️ カウンセリングシート
-        </a>
 
-        <!-- SNS・リンクリスト -->
-        <div class="sns-grid">
-            <a href="https://www.story-tokyo.com/prof/prof61/" target="_blank" class="sns-item">
-                <i class="fa-solid fa-globe"></i> 公式HP
-            </a>
-            <a href="https://lin.ee/VdDH29H" target="_blank" class="sns-item">
-                <i class="fa-brands fa-line"></i> 個人LINE
-            </a>
-            <a href="https://x.com/yuu_story0?s=11" target="_blank" class="sns-item">
-                <i class="fa-brands fa-x-twitter"></i> X (Twitter)
-            </a>
-            <a href="https://bsky.app/profile/yu-story.bsky.social" target="_blank" class="sns-item">
-                <i class="fa-brands fa-bluesky"></i> Bluesky
-            </a>
-            <a href="https://www.instagram.com/yuu_story03?igsh=MTc2Y2M3bWViYm5wbg%3D%3D&utm_source=qr" target="_blank" class="sns-item">
-                <i class="fa-brands fa-instagram"></i> Instagram
-            </a>
-            <a href="https://twitcasting.tv/c:yuu_story" target="_blank" class="sns-item">
-                <i class="fa-solid fa-bullhorn"></i> ツイキャス
-            </a>
-        </div>
-    </div>
+<img src="profile.jpg" class="profile-img">
 
-    <script>
-        // LIFFの初期化
-        liff.init({
-            liffId: "2010735540-NyKzUI3c"
-        }).catch((err) => {
-            console.error('LIFFの初期化に失敗しました', err);
-        });
-    </script>
+
+<h1 class="name">
+ゆうStory
+</h1>
+
+
+<p class="subtitle">
+〜 Premium Salon Story 〜
+</p>
+
+
+
+<div class="schedule">
+
+
+<h2 class="title">
+SCHEDULE
+</h2>
+
+
+<p>
+7/17 (金) 12:00〜21:00<br>
+7/18 (土) 12:00〜21:00<br>
+7/19 (日) 12:00〜21:00<br>
+7/20 (月) お休み<br>
+7/21 (火) 12:00〜21:00<br>
+7/22 (水) 12:00〜21:00<br>
+7/23 (木) 12:00〜21:00
+</p>
+
+
+</div>
+
+
+
+
+<a href="#" class="btn">
+⚜️ オンラインご予約
+</a>
+
+
+<a href="#" class="btn">
+⚜️ カウンセリングシート
+</a>
+
+
+<a href="https://www.story-tokyo.com/" class="btn sub">
+公式HP
+</a>
+
+
+<a href="#" class="btn sub">
+個人LINE
+</a>
+
+
+<a href="#" class="btn sub">
+X (Twitter)
+</a>
+
+
+<a href="#" class="btn sub">
+Instagram
+</a>
+
+
+
+<div class="footer">
+
+© STORY TOKYO All Rights Reserved.
+
+</div>
+
+
+</div>
+
+
 </body>
 </html>
