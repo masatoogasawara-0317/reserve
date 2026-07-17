@@ -1,264 +1,65 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ゆうStory</title>
-
-<style>
-
-body {
-    margin:0;
-    background:#0b0b0b;
-    color:#fff;
-    font-family:
-    "Helvetica Neue",
-    "Hiragino Kaku Gothic ProN",
-    sans-serif;
-}
-
-.container {
-    max-width:480px;
-    margin:auto;
-    padding:35px 20px;
-    text-align:center;
-}
-
-
-/* プロフィール画像 */
-
-.profile-img {
-    width:130px;
-    height:130px;
-    border-radius:50%;
-    object-fit:cover;
-    border:2px solid #c9a227;
-    box-shadow:
-    0 0 25px rgba(201,162,39,.35);
-
-    margin-bottom:20px;
-}
-
-
-
-/* 名前 */
-
-.name {
-
-    font-size:30px;
-    letter-spacing:5px;
-    font-weight:300;
-
-    color:#d4af37;
-
-    margin:0;
-
-}
-
-
-.subtitle {
-
-    font-size:13px;
-
-    color:#999;
-
-    letter-spacing:3px;
-
-    margin-top:10px;
-
-}
-
-
-
-/* スケジュール */
-
-.schedule {
-
-    margin-top:40px;
-
-}
-
-
-
-.title {
-
-    color:#d4af37;
-
-    letter-spacing:3px;
-
-    font-size:16px;
-
-    margin-bottom:20px;
-
-}
-
-
-
-.schedule p {
-
-    font-size:15px;
-
-    line-height:2;
-
-    color:#ddd;
-
-}
-
-
-
-/* ボタン */
-
-.btn {
-
-    display:block;
-
-    margin:15px 0;
-
-    padding:15px;
-
-    border-radius:30px;
-
-    text-decoration:none;
-
-    color:#000;
-
-    font-weight:bold;
-
-    background:
-
-    linear-gradient(
-
-    135deg,
-
-    #d4af37,
-
-    #a67c00
-
-    );
-
-
-
-    box-shadow:
-
-    0 5px 20px rgba(212,175,55,.25);
-
-}
-
-
-
-.btn.sub {
-
-    background:#151515;
-
-    color:#d4af37;
-
-    border:1px solid #d4af37;
-
-}
-
-
-
-.footer {
-
-    margin-top:40px;
-
-    font-size:11px;
-
-    color:#555;
-
-}
-
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shift Schedule</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #d4af37; /* ゴールドの文字色 */
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+        }
+        /* シフト表のスタイル */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        tr {
+            border-bottom: 1px solid #333;
+        }
+        td {
+            padding: 12px;
+        }
+        .date {
+            font-weight: bold;
+        }
+        .time {
+            text-align: right;
+        }
+    </style>
 </head>
-
-
 <body>
 
-
 <div class="container">
+    <h1>SCHEDULE</h1>
 
-
-<img src="profile.jpg" class="profile-img">
-
-
-<h1 class="name">
-ゆうStory
-</h1>
-
-
-<p class="subtitle">
-〜 Premium Salon Story 〜
-</p>
-
-
-
-<div class="schedule">
-
-
-<h2 class="title">
-SCHEDULE
-</h2>
-
-
-<p>
-7/17 (金) 12:00〜21:00<br>
-7/18 (土) 12:00〜21:00<br>
-7/19 (日) 12:00〜21:00<br>
-7/20 (月) お休み<br>
-7/21 (火) 12:00〜21:00<br>
-7/22 (水) 12:00〜21:00<br>
-7/23 (木) 12:00〜21:00
-</p>
-
+    <!-- 自動更新プログラムがこのタグの間を書き換えます -->
+    <!-- SHIFT_START -->
+    <table>
+        <tr>
+            <td class="date">07/17</td>
+            <td class="time">読み込み中...</td>
+        </tr>
+    </table>
+    <!-- SHIFT_END -->
 
 </div>
-
-
-
-
-<a href="#" class="btn">
-⚜️ オンラインご予約
-</a>
-
-
-<a href="#" class="btn">
-⚜️ カウンセリングシート
-</a>
-
-
-<a href="https://www.story-tokyo.com/" class="btn sub">
-公式HP
-</a>
-
-
-<a href="#" class="btn sub">
-個人LINE
-</a>
-
-
-<a href="#" class="btn sub">
-X (Twitter)
-</a>
-
-
-<a href="#" class="btn sub">
-Instagram
-</a>
-
-
-
-<div class="footer">
-
-© STORY TOKYO All Rights Reserved.
-
-</div>
-
-
-</div>
-
 
 </body>
 </html>
