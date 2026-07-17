@@ -32,10 +32,38 @@
             <div class="schedule-header"><i class="fa-regular fa-calendar-days"></i> SCHEDULE</div>
             
             <!-- SHIFT_START -->
-            <!-- GitHub Actionsがここを自動的に書き換えます -->
-            <table style="width:100%; border-collapse: collapse; font-size: 13px;">
-                <tr><td style="text-align:center; padding:20px; color:#666;">読み込み中...</td></tr>
+            <table id="shift-table" style="width:100%; border-collapse: collapse; font-size: 13px;">
+                <thead>
+                    <tr style="color:#D4AF37; border-bottom:1px solid #333;">
+                        <th style="padding:5px;">日時</th>
+                        <th style="padding:5px;">時間</th>
+                        <th style="padding:5px;">状況</th>
+                    </tr>
+                </thead>
+                <tbody id="shift-body" style="color:#ccc;">
+                    <tr><td colspan="3" style="text-align:center; padding:20px;">読み込み中...</td></tr>
+                </tbody>
             </table>
+            
+            <script>
+                fetch('result.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const tbody = document.getElementById('shift-body');
+                        tbody.innerHTML = ''; 
+                        data.forEach(item => {
+                            const row = `<tr style="border-bottom:1px solid #222;">
+                                <td style="padding:8px 5px;">${item.date}</td>
+                                <td style="padding:8px 5px;">${item.startTime}~${item.endTime}</td>
+                                <td style="padding:8px 5px;">${item.status}</td>
+                            </tr>`;
+                            tbody.innerHTML += row;
+                        });
+                    })
+                    .catch(err => {
+                        document.getElementById('shift-body').innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px;">データ取得中...</td></tr>';
+                    });
+            </script>
             <!-- SHIFT_END -->
         </div>
 
