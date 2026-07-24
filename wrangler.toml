@@ -1,0 +1,3 @@
+name = "profile"
+main = "index.js" # ※もしWorkerコードのファイル名が worker.js や script.js の場合はそのファイル名に書き換えてください
+compatibility_date = "2024-01-01"
